@@ -7,7 +7,8 @@ st.title("💰 Donation Dashboard")
 uploaded_file = st.file_uploader("Upload your donation CSV or Excel file", type=["csv", "xlsx"])
 
 if uploaded_file is None:
-    st.info("Please upload a file to get started.")st.stop()
+    st.info("Please upload a file to get started.")
+    st.stop()
 
 # Load the file
 if uploaded_file.name.endswith(".xlsx"):
