@@ -387,4 +387,5 @@ with tab4:
         'Full Name':      'Donor',
         'Final_Score':    'Score',
         'R_Score':        'Recency',
-        'F_Score':        
+        'F_Score':
+    }
