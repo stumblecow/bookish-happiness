@@ -245,7 +245,7 @@ with tab4:
     st.markdown("Adjust how much each factor influences the final score:")
 
     col_w1, col_w2, col_w3 = st.columns(3)
-    recency_weight  = col_w1.slider("Recency Weight",  1, 5, 3)
+    recency_weight   = col_w1.slider("Recency Weight",   1, 5, 3)
     frequency_weight = col_w2.slider("Frequency Weight", 1, 5, 2)
     monetary_weight  = col_w3.slider("Monetary Weight",  1, 5, 5)
 
@@ -286,7 +286,7 @@ with tab4:
 
     rfm['R_Score'] = score_column(rfm['Recency_Days'], ascending=True)
     rfm['F_Score'] = score_column(rfm['Frequency'],    ascending=False)
-    rfm['M_Score'] = score_column(rfm['Total_Donated'],ascending=False)
+    rfm['M_Score'] = score_column(rfm['Total_Donated'], ascending=False)
 
     rfm[['R_Score', 'F_Score', 'M_Score']] = (
         rfm[['R_Score', 'F_Score', 'M_Score']].fillna(1)
@@ -323,11 +323,11 @@ with tab4:
 
     col1, col2, col3, col4, col5 = st.columns(5)
     tier_cols = {
-        "🌟 Champion": col1,
-        "💚 Loyal":    col2,
-        "🔄 Promising":col3,
-        "⚠️ At Risk":  col4,
-        "❌ Lapsed":   col5
+        "🌟 Champion":  col1,
+        "💚 Loyal":     col2,
+        "🔄 Promising": col3,
+        "⚠️ At Risk":   col4,
+        "❌ Lapsed":    col5
     }
     for tier, col in tier_cols.items():
         count = rfm[rfm['Tier'] == tier].shape[0]
@@ -384,14 +384,13 @@ with tab4:
         'R_Score', 'F_Score', 'M_Score',
         'Recency_Days', 'Frequency', 'Total_Donated', 'Last_Donation'
     ]].rename(columns={
-        'Full Name':      'Donor',
-        'Final_Score':    'Score',
-        'R_Score':        'Recency',
-        'F_Score':        
-            'F_Score':        'Frequency Score',
-        'M_Score':        'Monetary',
-        'Recency_Days':   'Days Since Last Gift',
-        'Total_Donated':  'Total Given',
+        'Full Name':     'Donor',
+        'Final_Score':   'Score',
+        'R_Score':       'Recency',
+        'F_Score':       'Frequency Score',
+        'M_Score':       'Monetary',
+        'Recency_Days':  'Days Since Last Gift',
+        'Total         'Total_Donated':  'Total Given',
         'Last_Donation':  'Last Gift Date'
     })
 
