@@ -390,7 +390,7 @@ with tab4:
         'F_Score':       'Frequency Score',
         'M_Score':       'Monetary',
         'Recency_Days':  'Days Since Last Gift',
-        'Total         'Total_Donated':  'Total Given',
+        'Total_Donated':  'Total Given',
         'Last_Donation':  'Last Gift Date'
     })
 
