@@ -387,5 +387,58 @@ with tab4:
         'Full Name':      'Donor',
         'Final_Score':    'Score',
         'R_Score':        'Recency',
-        'F_Score':
-    }
+        'F_Score':        
+            'F_Score':        'Frequency Score',
+        'M_Score':        'Monetary',
+        'Recency_Days':   'Days Since Last Gift',
+        'Total_Donated':  'Total Given',
+        'Last_Donation':  'Last Gift Date'
+    })
+
+    st.dataframe(
+        display_df.style.format({
+            'Score':                '{:.1f}',
+            'Total Given':          '${:,.2f}',
+            'Days Since Last Gift': '{:.0f}'
+        }),
+        use_container_width=True
+    )
+
+    st.markdown("---")
+
+    # ── PRIORITY CALL SHEET ──
+    st.markdown("### 📞 Priority Call Sheet")
+    st.markdown("Top donors to contact — sorted by score")
+
+    call_sheet = rfm[rfm['Tier'].isin(["🌟 Champion", "💚 Loyal"])].head(20)[[
+        'Full Name', 'Tier', 'Final_Score', 'Total_Donated',
+        'Recency_Days', 'Frequency', 'Last_Donation'
+    ]].rename(columns={
+        'Full Name':     'Donor',
+        'Final_Score':   'Score',
+        'Total_Donated': 'Total Given',
+        'Recency_Days':  'Days Since Last Gift',
+        'Last_Donation': 'Last Gift Date'
+    })
+
+    st.dataframe(
+        call_sheet.style.format({
+            'Score':                '{:.1f}',
+            'Total Given':          '${:,.2f}',
+            'Days Since Last Gift': '{:.0f}'
+        }),
+        use_container_width=True
+    )
+
+    st.markdown("---")
+
+    # ── DOWNLOAD BUTTON ──
+    st.markdown("### 💾 Download Scored Data")
+
+    csv = rfm.to_csv(index=True).encode('utf-8')
+    st.download_button(
+        label="⬇️ Download Full Scorecard as CSV",
+        data=csv,
+        file_name="donor_scores.csv",
+        mime="text/csv"
+    )
